@@ -12,6 +12,8 @@ function App() {
     setInputVal(inputVal + value);
   }
 
+  window.onload = () => document.getElementById("input1").focus()
+
   function handleEval() {
     try {
       const parser = new Parser();
@@ -32,10 +34,14 @@ function App() {
   }
 
   function handleKeyDown({ code }) {
-    const options = { Enter: handleEval, Escape: allClear };
+    console.log({ code });
+    const options = {
+      Enter: handleEval,
+      Escape: allClear,
+    };
     if (options[code]) options[code]();
   }
-
+  
   return (
     <div className="App">
       <div className="calc">
@@ -43,6 +49,7 @@ function App() {
         <input
           value={inputVal}
           type="text"
+          id = "input1"
           onChange={(e) => setInputVal(e.target.value)}
           onKeyDown={handleKeyDown}
         />
