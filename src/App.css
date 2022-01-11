@@ -4,6 +4,11 @@
   margin: auto;
 }
 
+.heading {
+  text-align: center;
+  font-family: unset;
+}
+
 .calc input {
   width: calc(100% - 5px);
   margin-left: 5px;
@@ -12,4 +17,23 @@
 .numbers {
   width: calc(25% - 5px);
   margin-left: 5px;
+  margin-top: 5px;
+}
+
+.symbols {
+  width: calc(25% - 5px);
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.clear_all {
+  width: calc(30% - 5px);
+  margin-left: calc(50% + 5px);
+  margin-top: 5px;
+}
+
+.clear {
+  width: calc(20% - 5px);
+  margin-left: 5px;
+  margin-top: 5px;
 }
