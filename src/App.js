@@ -31,11 +31,9 @@ function App() {
     setInputVal(inputVal.substring(0, inputVal.length - 1));
   }
 
-  function handleKeyDown({code}){
-    switch(code){
-      case 'Enter': return handleEval();
-      case 'Escape': return allClear();
-    }
+  function handleKeyDown({ code }) {
+    const options = { Enter: handleEval, Escape: allClear };
+    if (options[code]) options[code]();
   }
 
   return (
