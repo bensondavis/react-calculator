@@ -28,31 +28,70 @@ function App() {
   }
 
   function clearLast() {
-    setInputVal(inputVal.substring(0, inputVal.length - 1))
+    setInputVal(inputVal.substring(0, inputVal.length - 1));
+  }
+
+  function handleKeyDown({code}){
+    switch(code){
+      case 'Enter': return handleEval();
+      case 'Escape': return allClear();
+    }
   }
 
   return (
     <div className="App">
       <div className="calc">
-      <h1 className="p">Calculator</h1>
-      <input value={inputVal} type="text" />
-      <div>
-        {Array(10)
-          .fill(1)
-          .map((_, i) => (
-            <Number className="numbers" key={i} value={i} onClick={numberClickHandler} />
-          ))}
-        <Number className="numbers" value={"."} onClick={numberClickHandler} />
-      </div>
-      <div>
-        <Number value={"+"} onClick={numberClickHandler} />
-        <Number value={"-"} onClick={numberClickHandler} />
-        <Number value={"*"} onClick={numberClickHandler} />
-        <Number value={"/"} onClick={numberClickHandler} />
-        <Number value={"="} onClick={handleEval} />
-        <Number value={"All Clear"} onClick={allClear} />
-        <Number value={"Clear"} onClick={clearLast} />
-      </div>
+        <h1 className="heading">Calculator.</h1>
+        <input
+          value={inputVal}
+          type="text"
+          onChange={(e) => setInputVal(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <div>
+          {Array(10)
+            .fill(1)
+            .map((_, i) => (
+              <Number
+                className="numbers"
+                key={i}
+                value={i}
+                onClick={numberClickHandler}
+              />
+            ))}
+          <Number
+            className="numbers"
+            value={"."}
+            onClick={numberClickHandler}
+          />
+          <Number className="numbers" value={"="} onClick={handleEval} />
+          <Number
+            className="symbols"
+            value={"+"}
+            onClick={numberClickHandler}
+          />
+          <Number
+            className="symbols"
+            value={"-"}
+            onClick={numberClickHandler}
+          />
+          <Number
+            className="symbols"
+            value={"*"}
+            onClick={numberClickHandler}
+          />
+          <Number
+            className="symbols"
+            value={"/"}
+            onClick={numberClickHandler}
+          />
+          <Number
+            className="clear_all"
+            value={"All Clear"}
+            onClick={allClear}
+          />
+          <Number className="clear" value={"<="} onClick={clearLast} />
+        </div>
       </div>
     </div>
   );
