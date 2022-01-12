@@ -63,7 +63,7 @@ function App() {
       handleRedo();
     }
   }
-
+  
   return (
     <div className="App">
       <div className="calc">
