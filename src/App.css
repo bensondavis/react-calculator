@@ -28,12 +28,24 @@
 
 .clear_all {
   width: calc(30% - 5px);
-  margin-left: calc(50% + 5px);
+  margin-left: 5px;
   margin-top: 5px;
 }
 
 .clear {
   width: calc(20% - 5px);
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.undo {
+  width: calc(25% - 5px);
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.redo {
+  width: calc(25% - 5px);
   margin-left: 5px;
   margin-top: 5px;
 }
