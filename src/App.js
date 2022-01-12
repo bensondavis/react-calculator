@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Parser } from "expr-eval";
 
 import Number from "./components/Number";
+import { addStack, redo, undo } from "./utility/undo";
 
 import "./App.css";
 
@@ -12,7 +13,7 @@ function App() {
     setInputVal(inputVal + value);
   }
 
-  window.onload = () => document.getElementById("input1").focus()
+  window.onload = () => document.getElementById("input1").focus();
 
   function handleEval() {
     try {
@@ -20,6 +21,7 @@ function App() {
       const exp = parser.parse(inputVal);
       const result = exp.evaluate();
       setInputVal(result);
+      addStack(inputVal);
     } catch (e) {
       alert(`invalid expression : ${e}`);
     }
@@ -33,23 +35,43 @@ function App() {
     setInputVal(inputVal.substring(0, inputVal.length - 1));
   }
 
-  function handleKeyDown({ code }) {
-    console.log({ code });
+  function handleUndo() {
+    const prevVal = undo();
+    if (prevVal) {
+      setInputVal(prevVal);
+    }
+  }
+
+  function handleRedo() {
+    const currentVal = redo();
+    if (currentVal) {
+      setInputVal(currentVal);
+    }
+  }
+
+  function handleKeyDown(e) {
+    console.log({ e });
     const options = {
       Enter: handleEval,
       Escape: allClear,
     };
-    if (options[code]) options[code]();
+    if (options[e.code]) options[e.code]();
+    if (e.ctrlKey && e.key === "z") {
+      handleUndo();
+    }
+    if (e.ctrlKey && e.key === "q") {
+      handleRedo();
+    }
   }
-  
+
   return (
     <div className="App">
       <div className="calc">
-        <h1 className="heading">Calculator.</h1>
+        <h1 className="heading">Calculator</h1>
         <input
           value={inputVal}
           type="text"
-          id = "input1"
+          id="input1"
           onChange={(e) => setInputVal(e.target.value)}
           onKeyDown={handleKeyDown}
         />
@@ -85,11 +107,14 @@ function App() {
             value={"*"}
             onClick={numberClickHandler}
           />
+
           <Number
             className="symbols"
             value={"/"}
             onClick={numberClickHandler}
           />
+          <Number className="undo" value={"Undo"} onClick={handleUndo} />
+          <Number className="redo" value={"Redo"} onClick={handleRedo} />
           <Number
             className="clear_all"
             value={"All Clear"}
