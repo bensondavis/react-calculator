@@ -50,7 +50,6 @@ function App() {
   }
 
   function handleKeyDown(e) {
-    console.log({ e });
     const options = {
       Enter: handleEval,
       Escape: allClear,
