@@ -2,15 +2,22 @@ import { useState } from "react";
 import { Parser } from "expr-eval";
 
 import Number from "./components/Number";
-import { addStack, redo, undo } from "./utility/undo";
+import { addAns, addStack, getAns, redo, undo } from "./utility/undo";
+import packageJson from "../package.json";
 
 import "./App.css";
 
+let run = 0;
 function App() {
   const [inputVal, setInputVal] = useState("");
 
   function numberClickHandler(value) {
-    setInputVal(inputVal + value);
+    if (run === 1) {
+      run = 0;
+      setInputVal(value);
+    } else {
+      setInputVal(inputVal + value);
+    }
   }
 
   window.onload = () => document.getElementById("input1").focus();
@@ -22,6 +29,8 @@ function App() {
       const result = exp.evaluate();
       setInputVal(result);
       addStack(inputVal);
+      addAns(result);
+      run = 1;
     } catch (e) {
       alert(`invalid expression : ${e}`);
     }
@@ -50,6 +59,10 @@ function App() {
   }
 
   function handleKeyDown(e) {
+    if (run === 1) {
+      run = 0;
+      allClear();
+    }
     const options = {
       Enter: handleEval,
       Escape: allClear,
@@ -62,19 +75,27 @@ function App() {
       handleRedo();
     }
   }
-  
+
+  function handleAns() {
+    const val = getAns();
+    setInputVal(inputVal + val);
+  }
+
   return (
     <div className="App">
       <div className="calc">
-        <h1 className="heading">Calculator</h1>
-        <input
-          value={inputVal}
-          type="text"
-          id="input1"
-          onChange={(e) => setInputVal(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
+        <div id="details">
+          <h1 className="heading">Calculator</h1>
+          <p className="version_id">v{packageJson.version}</p>
+        </div>
         <div>
+          <input
+            value={inputVal}
+            type="text"
+            id="input1"
+            onChange={(e) => setInputVal(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
           {Array(10)
             .fill(1)
             .map((_, i) => (
@@ -120,6 +141,7 @@ function App() {
             onClick={allClear}
           />
           <Number className="clear" value={"<="} onClick={clearLast} />
+          <Number className="clear" value={"Ans"} onClick={handleAns} />
         </div>
       </div>
     </div>
