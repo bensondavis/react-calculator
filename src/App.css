@@ -1,12 +1,13 @@
 .calc {
-  width: calc(100%/3);
+  width: calc(100% / 3);
   min-width: 270px;
   margin: auto;
 }
 
 .heading {
-  text-align: center;
+  
   font-family: unset;
+  margin-left: calc(50% - 79.59px);
 }
 
 .calc input {
@@ -49,3 +50,11 @@
   margin-left: 5px;
   margin-top: 5px;
 }
+
+#details h1,
+#details p {
+  display: inline;
+  vertical-align: top;
+}
+
+

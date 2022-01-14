@@ -1,5 +1,14 @@
 const stack = [];
 const redoStack = [];
+const ans = [];
+
+function addAns(val) {
+  ans[0] = val;
+}
+
+function getAns() {
+  return ans[0];
+}
 
 function addStack(val) {
   stack.push(val);
@@ -21,4 +30,4 @@ function redo() {
   }
 }
 
-export { addStack, undo, redo };
+export { addStack, undo, redo ,addAns, getAns};
