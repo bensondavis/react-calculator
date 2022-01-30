@@ -81,7 +81,7 @@ function App() {
       setInputVal(inputVal + val);
     }
   }
-
+  
   return (
     <div className="App">
       <h1 className="details">
