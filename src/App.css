@@ -19,6 +19,7 @@ h1 {
 p {
   color: rgb(187, 187, 187);
   font-size: small;
+}
 
 input {
   width: calc(100% - 55px);
@@ -178,3 +179,4 @@ input {
   color: black;
   background-color: rgb(226, 109, 0);
 }
+

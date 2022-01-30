@@ -57,23 +57,6 @@ function App() {
     }
   }
 
-  /*function handleKeyDown(e) {
-    if (run === 1) {
-      run = 0;
-      allClear();
-    }
-    const options = {
-      Enter: handleEval,
-      Escape: allClear,
-    };
-    if (options[e.code]) options[e.code]();
-    if (e.ctrlKey && e.key === "z") {
-      handleUndo();
-    }
-    if (e.ctrlKey && e.key === "q") {
-      handleRedo();
-    }
-}*/
 
   function handleAns() {
     const val = getAns();
@@ -81,7 +64,7 @@ function App() {
       setInputVal(inputVal + val);
     }
   }
-  
+
   return (
     <div className="App">
       <h1 className="details">
