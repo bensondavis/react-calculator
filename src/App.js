@@ -20,8 +20,6 @@ function App() {
     }
   }
 
-  window.onload = () => document.getElementById("input1").focus();
-
   function handleEval() {
     try {
       const parser = new Parser();
@@ -32,7 +30,8 @@ function App() {
       addAns(result);
       run = 1;
     } catch (e) {
-      alert(`invalid expression : ${e}`);
+      setInputVal("ERROR");
+      run = 1;
     }
   }
 
@@ -58,7 +57,7 @@ function App() {
     }
   }
 
-  function handleKeyDown(e) {
+  /*function handleKeyDown(e) {
     if (run === 1) {
       run = 0;
       allClear();
@@ -74,74 +73,152 @@ function App() {
     if (e.ctrlKey && e.key === "q") {
       handleRedo();
     }
-  }
+}*/
 
   function handleAns() {
     const val = getAns();
-    setInputVal(inputVal + val);
+    if (val !== undefined) {
+      setInputVal(inputVal + val);
+    }
   }
 
   return (
     <div className="App">
-      <div className="calc">
-        <div id="details">
-          <h1 className="heading">Calculator</h1>
-          <p className="version_id">v{packageJson.version}</p>
-        </div>
-        <div>
-          <input
-            value={inputVal}
-            type="text"
-            id="input1"
-            onChange={(e) => setInputVal(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          {Array(10)
-            .fill(1)
-            .map((_, i) => (
-              <Number
-                className="numbers"
-                key={i}
-                value={i}
-                onClick={numberClickHandler}
-              />
-            ))}
+      <h1 className="details">
+        <strong>Calculator</strong>
+      </h1>
+      <p className="details">v{packageJson.version}</p>
+      <div>
+        <input value={inputVal} type="text" placeholder="0" />
+        <Number className="clear " value={"<="} onClick={clearLast} />
+      </div>
+      <div id="numpad" className="keys">
+        <Number
+          className="numbers button_color"
+          value={"7"}
+          onClick={numberClickHandler}
+        />
+        <Number
+          className="numbers button_color"
+          value={"8"}
+          onClick={numberClickHandler}
+        />
+        <Number
+          className="numbers button_color"
+          value={"9"}
+          onClick={numberClickHandler}
+        />
+        <Number
+          className="numbers button_color"
+          value={"4"}
+          onClick={numberClickHandler}
+        />
+        <Number
+          className="numbers button_color"
+          value={"5"}
+          onClick={numberClickHandler}
+        />
+        <Number
+          className="numbers button_color"
+          value={"6"}
+          onClick={numberClickHandler}
+        />
+        <Number
+          className="numbers button_color"
+          value={"1"}
+          onClick={numberClickHandler}
+        />
+        <Number
+          className="numbers button_color"
+          value={"2"}
+          onClick={numberClickHandler}
+        />
+        <Number
+          className="numbers button_color"
+          value={"3"}
+          onClick={numberClickHandler}
+        />
+        <Number
+          className="numbers button_color"
+          value={"0"}
+          onClick={numberClickHandler}
+        />
+        <Number
+          className="numbers button_color"
+          value={"."}
+          onClick={numberClickHandler}
+        />
+        <Number
+          className="equals button_color"
+          value={"="}
+          onClick={handleEval}
+        />
+      </div>
+      <div id="ops" className="keys">
+        <div className="parenthesis">
           <Number
-            className="numbers"
-            value={"."}
+            className="parenthesis_l button_color"
+            value={"("}
             onClick={numberClickHandler}
           />
-          <Number className="numbers" value={"="} onClick={handleEval} />
           <Number
-            className="symbols"
+            className="parenthesis_r button_color"
+            value={")"}
+            onClick={numberClickHandler}
+          />
+          <Number
+            className="power button_color"
+            value={"^"}
+            onClick={numberClickHandler}
+          />
+        </div>
+        <div className="symbols">
+          <Number
+            className="plus button_color"
             value={"+"}
             onClick={numberClickHandler}
           />
           <Number
-            className="symbols"
+            className="minus button_color"
             value={"-"}
             onClick={numberClickHandler}
           />
           <Number
-            className="symbols"
+            className="undo button_color"
+            value={"Undo"}
+            onClick={handleUndo}
+          />
+        </div>
+        <div className="symbols">
+          <Number
+            className="product button_color"
             value={"*"}
             onClick={numberClickHandler}
           />
-
           <Number
-            className="symbols"
+            className="division button_color"
             value={"/"}
             onClick={numberClickHandler}
           />
-          <Number className="undo" value={"Undo"} onClick={handleUndo} />
-          <Number className="redo" value={"Redo"} onClick={handleRedo} />
           <Number
-            className="clear_all"
+            className="redo button_color"
+            value={"Redo"}
+            onClick={handleRedo}
+          />
+        </div>
+
+        <div className="symbols">
+          <Number
+            className="ans button_color"
+            value={"Ans"}
+            onClick={handleAns}
+          />
+
+          <Number
+            className="clear_all button_color"
             value={"All Clear"}
             onClick={allClear}
           />
-          <Number className="clear" value={"<="} onClick={clearLast} />
-          <Number className="clear" value={"Ans"} onClick={handleAns} />
         </div>
       </div>
     </div>
