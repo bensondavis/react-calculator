@@ -1,60 +1,180 @@
-.calc {
-  width: calc(100% / 3);
-  min-width: 270px;
+body {
+  background-color: black;
+}
+
+.App {
+  width: calc(100% / 2);
+  min-width: 330px;
+  border-color: grey;
+  border-width: 5px;
   margin: auto;
 }
 
-.heading {
-  
-  font-family: unset;
-  margin-left: calc(50% - 79.59px);
+h1 {
+  font-family: monospace;
+  color: rgb(226, 109, 0);
+  margin-left: calc(50% - 98.94px);
 }
 
-.calc input {
-  width: calc(100% - 5px);
+p {
+  color: rgb(187, 187, 187);
+  font-size: small;
+
+input {
+  width: calc(100% - 55px);
+  height: 50px;
+  margin-bottom: 0px;
   margin-left: 5px;
+  border-radius: 10px 0px 0px 10px;
+  background-color: black;
+  border-color: rgb(226, 109, 0);
+  color: rgb(255, 134, 21);
+  font-size: x-large;
+  border-style: solid;
+  pointer-events: none;
+}
+
+.button_color {
+  color: black;
+  background-color: rgb(226, 109, 0);
+  border-color: rgba(0, 0, 0, 0);
+  border-width: 3px;
+  border-style: solid;
+  font-size: medium;
+  font-weight: 700;
+  min-width: 50px;
+  width: 30%;
+  height: 50px;
 }
 
 .numbers {
-  width: calc(25% - 5px);
+  width: calc(30% - 10px) !important;
   margin-left: 5px;
   margin-top: 5px;
+  border-radius: 10px;
+}
+
+.button_color:hover {
+  background-color: rgb(0, 0, 0);
+  color: rgb(226, 109, 0);
+  border-color: rgb(226, 109, 0);
 }
 
 .symbols {
-  width: calc(25% - 5px);
   margin-left: 5px;
-  margin-top: 5px;
 }
 
 .clear_all {
-  width: calc(30% - 5px);
-  margin-left: 5px;
+  width: 30%;
   margin-top: 5px;
+  margin-left: 5px;
+  border-radius: 10px;
 }
 
 .clear {
-  width: calc(20% - 5px);
-  margin-left: 5px;
-  margin-top: 5px;
+  width: 50px;
+  height: 50px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 1);
+  border: solid;
+  border-color: rgba(226, 109, 0, 0);
+  font-size: large;
+  background-color: rgb(226, 109, 0);
+  float: right;
+  border-radius: 0px 10px 10px 0px;
 }
 
 .undo {
-  width: calc(25% - 5px);
+  border-radius: 10px 10px 0px 0px;
   margin-left: 5px;
-  margin-top: 5px;
+  height: 52.5px;
 }
 
 .redo {
-  width: calc(25% - 5px);
+  border-radius: 0px 0px 10px 10px;
   margin-left: 5px;
-  margin-top: 5px;
+  height: 52.5px;
 }
 
-#details h1,
-#details p {
+.details {
   display: inline;
+}
+
+.keys {
+  display: inline-block;
   vertical-align: top;
 }
 
+#numpad {
+  width: calc(50%);
+  min-width: 165px;
+}
 
+#ops {
+  width: calc(50%);
+  min-width: 165px;
+}
+
+.parenthesis_l {
+  border-radius: 10px 0px 0px 10px;
+  width: calc(30% + 2.5px);
+}
+
+.parenthesis_r {
+  border-radius: 0px 10px 10px 0px;
+  width: calc(30% + 2.5px);
+}
+
+.parenthesis {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+.plus {
+  border-radius: 10px 0px 0px 0px;
+  height: 52.5px;
+  width: calc(30% + 2.5px);
+}
+
+.minus {
+  border-radius: 0px 10px 0px 0px;
+  height: 52.5px;
+  width: calc(30% + 2.5px);
+}
+
+.product {
+  border-radius: 0px 0px 0px 10px;
+  height: 52.5px;
+  width: calc(30% + 2.5px);
+}
+
+.division {
+  border-radius: 0px 0px 10px 0px;
+  height: 52.5px;
+  width: calc(30% + 2.5px);
+}
+
+.power {
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+.ans {
+  border-radius: 10px;
+}
+
+.equals {
+  color: rgb(226, 109, 0);
+  background-color: black;
+  border-style: solid;
+  border-color: rgb(226, 109, 0);
+  border-radius: 10px;
+  margin-left: 5px;
+  font-weight: 800;
+}
+
+.equals:hover {
+  color: black;
+  background-color: rgb(226, 109, 0);
+}
