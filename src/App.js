@@ -57,6 +57,7 @@ function App() {
     }
   }
 
+
   function handleAns() {
     const val = getAns();
     if (val !== undefined) {
