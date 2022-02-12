@@ -4,6 +4,13 @@ import { Parser } from "expr-eval";
 import Number from "./components/Number";
 import { addAns, addStack, getAns, redo, undo } from "./utility/undo";
 import packageJson from "../package.json";
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import BackspaceIcon from "@mui/icons-material/Backspace";
+import { Divider } from "@mui/material";
 
 import "./App.css";
 
@@ -57,7 +64,6 @@ function App() {
     }
   }
 
-
   function handleAns() {
     const val = getAns();
     if (val !== undefined) {
@@ -66,145 +72,157 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <Box
+      sx={{
+        minWidth: 438.67,
+        width: "50%",
+        height: 400,
+        borderRadius: "10px",
+        m: "50px auto",
+      }}
+      border={1}
+      borderColor="primary.main"
+    >
       <h1 className="details">
         <strong>Calculator</strong>
       </h1>
       <p className="details">v{packageJson.version}</p>
-      <div>
-        <input value={inputVal} type="text" placeholder="0" />
-        <Number className="clear " value={"<="} onClick={clearLast} />
-      </div>
-      <div id="numpad" className="keys">
-        <Number
-          className="numbers button_color"
-          value={"7"}
-          onClick={numberClickHandler}
+
+      <FormControl
+        sx={{ width: "100%", p: 1, mt: 2, mb: 1}}
+        variant="outlined"
+      >
+        <OutlinedInput
+          id="outlined-adornment-password"
+          type={"text"}
+          value={inputVal}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton onClick={clearLast} edge="end">
+                <BackspaceIcon />
+              </IconButton>
+            </InputAdornment>
+          }
         />
-        <Number
-          className="numbers button_color"
-          value={"8"}
-          onClick={numberClickHandler}
-        />
-        <Number
-          className="numbers button_color"
-          value={"9"}
-          onClick={numberClickHandler}
-        />
-        <Number
-          className="numbers button_color"
-          value={"4"}
-          onClick={numberClickHandler}
-        />
-        <Number
-          className="numbers button_color"
-          value={"5"}
-          onClick={numberClickHandler}
-        />
-        <Number
-          className="numbers button_color"
-          value={"6"}
-          onClick={numberClickHandler}
-        />
-        <Number
-          className="numbers button_color"
-          value={"1"}
-          onClick={numberClickHandler}
-        />
-        <Number
-          className="numbers button_color"
-          value={"2"}
-          onClick={numberClickHandler}
-        />
-        <Number
-          className="numbers button_color"
-          value={"3"}
-          onClick={numberClickHandler}
-        />
-        <Number
-          className="numbers button_color"
-          value={"0"}
-          onClick={numberClickHandler}
-        />
-        <Number
-          className="numbers button_color"
-          value={"."}
-          onClick={numberClickHandler}
-        />
-        <Number
-          className="equals button_color"
-          value={"="}
-          onClick={handleEval}
-        />
-      </div>
-      <div id="ops" className="keys">
-        <div className="parenthesis">
+      </FormControl>
+      <Box display="flex" sx={{ width: "100%" }}>
+        <Box sx={{ width: "50%", p: 1 }}>
           <Number
-            className="parenthesis_l button_color"
+            className="numbers"
+            value={"7"}
+            onClick={numberClickHandler}
+          />
+
+          <Number
+            className="numbers"
+            value={"8"}
+            onClick={numberClickHandler}
+          />
+
+          <Number
+            className="numbers"
+            value={"9"}
+            onClick={numberClickHandler}
+          />
+
+          <Number
+            className="numbers"
+            value={"4"}
+            onClick={numberClickHandler}
+          />
+
+          <Number
+            className="numbers"
+            value={"5"}
+            onClick={numberClickHandler}
+          />
+
+          <Number
+            className="numbers"
+            value={"6"}
+            onClick={numberClickHandler}
+          />
+
+          <Number
+            className="numbers"
+            value={"1"}
+            onClick={numberClickHandler}
+          />
+
+          <Number
+            className="numbers"
+            value={"2"}
+            onClick={numberClickHandler}
+          />
+
+          <Number
+            className="numbers"
+            value={"3"}
+            onClick={numberClickHandler}
+          />
+
+          <Number
+            className="numbers"
+            value={"0"}
+            onClick={numberClickHandler}
+          />
+
+          <Number
+            className="numbers"
+            value={"."}
+            onClick={numberClickHandler}
+          />
+
+          <Number className="numbers" value={"="} onClick={handleEval} />
+        </Box>
+        <Divider orientation="vertical" flexItem />
+        <Box sx={{ width: "50%", p: 1 }}>
+          <Number
+            className="numbers"
             value={"("}
             onClick={numberClickHandler}
           />
           <Number
-            className="parenthesis_r button_color"
+            className="numbers"
             value={")"}
             onClick={numberClickHandler}
           />
           <Number
-            className="power button_color"
+            className="numbers"
             value={"^"}
             onClick={numberClickHandler}
           />
-        </div>
-        <div className="symbols">
+
           <Number
-            className="plus button_color"
+            className="numbers"
             value={"+"}
             onClick={numberClickHandler}
           />
           <Number
-            className="minus button_color"
+            className="numbers"
             value={"-"}
             onClick={numberClickHandler}
           />
+          <Number className="numbers" value={"Undo"} onClick={handleUndo} />
+
           <Number
-            className="undo button_color"
-            value={"Undo"}
-            onClick={handleUndo}
-          />
-        </div>
-        <div className="symbols">
-          <Number
-            className="product button_color"
+            className="numbers"
             value={"*"}
             onClick={numberClickHandler}
           />
           <Number
-            className="division button_color"
+            className="numbers"
             value={"/"}
             onClick={numberClickHandler}
           />
-          <Number
-            className="redo button_color"
-            value={"Redo"}
-            onClick={handleRedo}
-          />
-        </div>
+          <Number className="numbers" value={"Redo"} onClick={handleRedo} />
 
-        <div className="symbols">
-          <Number
-            className="ans button_color"
-            value={"Ans"}
-            onClick={handleAns}
-          />
+          <Number className="numbers" value={"Ans"} onClick={handleAns} />
 
-          <Number
-            className="clear_all button_color"
-            value={"All Clear"}
-            onClick={allClear}
-          />
-        </div>
-      </div>
-    </div>
+          <Number className="numbers" value={"All Clear"} onClick={allClear} />
+        </Box>
+      </Box>
+    </Box>
   );
 }
 
