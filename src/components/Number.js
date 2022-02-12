@@ -1,21 +1,25 @@
+import Button from '@mui/material/Button';
+
 function Number({value, onClick, className}){
+
   if(value === "Undo") {
-    return <button className={className} onClick={()=>onClick(value)}><i class='fas fa-undo' ></i></button>;
+    return <Button variant='outlined' sx={{mb: "3px", mr: "3px"}} className={className} onClick={()=>onClick(value)}><i class='fas fa-undo' ></i></Button>;
   }
 
   if(value === "Redo") {
-    return <button className={className} onClick={()=>onClick(value)}><i class="fas fa-redo"></i></button>;
+    return <Button variant='outlined' sx={{mb: "3px", mr: "3px"}} className={className} onClick={()=>onClick(value)}><i class="fas fa-redo"></i></Button>;
   }
 
   if(value === "<=") {
-    return <button className={className} onClick={()=>onClick(value)}><i class='fas fa-backspace' ></i></button>;
+    return <Button variant='outlined' sx={{mb: "3px", mr: "3px"}} className={className} onClick={()=>onClick(value)}><i class='fas fa-backspace' ></i></Button>;
   }
 
   if(value === "All Clear") {
-    return <button className={className} onClick={()=>onClick(value)}><i class="far fa-trash-alt"></i></button>;
+    return <Button variant='outlined' sx={{mb: "3px", mr: "3px"}} className={className} onClick={()=>onClick(value)}><i class="far fa-trash-alt"></i></Button>;
   }
 
-  return <button className={className} onClick={()=>onClick(value)}>{value}</button>;
+  return <Button variant='outlined' sx={{mb: "3px", mr: "3px"}} className={className} onClick={()=>onClick(value)}>{value}</Button>;
 }
+
 
 export default Number;
